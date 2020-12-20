@@ -126,7 +126,7 @@ pub fn part2() {
 
     seat_ids.sort();
 
-    for i in 1..seat_ids.len() - 1 {
+    for i in 0..seat_ids.len() - 1 {
         if seat_ids[i + 1] == (seat_ids[i] + 2) {
             println!("Found seat: {}", seat_ids[i] + 1);
         }
