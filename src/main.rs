@@ -6,6 +6,7 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
 mod utils;
 
 fn help() {
@@ -46,6 +47,8 @@ fn main() {
         (5, 2) => day5::part2(),
         (6, 1) => day6::part1(),
         (6, 2) => day6::part2(),
+        (7, 1) => day7::part1(),
+        (7, 2) => day7::part2(),
         _ => help(),
     }
 }
