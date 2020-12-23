@@ -1,5 +1,6 @@
 use io::stdin;
 use std::io::{self, Read};
+
 #[derive(Debug)]
 struct Passenger {
     questions: String,

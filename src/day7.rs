@@ -1,9 +1,5 @@
 use crate::utils;
-use io::stdin;
-use std::{
-    io::{self, Read},
-    vec,
-};
+use std::{fmt::Debug, str::FromStr, string::ParseError};
 use utils::stdin_to_vec;
 
 #[derive(Debug, Clone, PartialEq, Default)]
@@ -59,9 +55,18 @@ impl Bag {
     }
 }
 
-impl utils::VecItem for Bag {
-    fn parse(&mut self, s: &str) {
-        self.parse(s);
+impl FromStr for Bag {
+    type Err= ParseError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        let mut instance = Self {
+            bag_type: String::new(),
+            contents: vec![],
+        };
+
+        instance.parse(s);
+
+        Ok(instance)
     }
 }
 

@@ -1,20 +1,18 @@
-use std::{fmt::Debug, write};
-
-use crate::utils::{stdin_to_vec, VecItem};
+use crate::utils;
+use std::{fmt::Debug, str::FromStr, string::ParseError};
+use utils::stdin_to_vec;
 
 pub struct SlopePattern {
     pub pattern: Vec<char>,
 }
 
-impl VecItem for SlopePattern {
-    fn parse(&mut self, s: &str) {
-        self.pattern = s.chars().collect();
-    }
-}
+impl FromStr for SlopePattern {
+    type Err = ParseError;
 
-impl Default for SlopePattern {
-    fn default() -> Self {
-        Self { pattern: vec![] }
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(Self {
+            pattern: s.chars().collect(),
+        })
     }
 }
 

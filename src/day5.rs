@@ -1,8 +1,8 @@
-use crate::utils::{stdin_to_vec, VecItem};
 use core::panic;
 use io::stdin;
 use std::io::{self, Read};
-#[derive(Default, Debug)]
+
+#[derive(Debug)]
 struct BoardingPass {
     seat_code: String,
     num_rows: u8,

@@ -1,18 +1,12 @@
 use crate::utils;
-use std::vec;
-use utils::{stdin_to_vec, VecItem};
+use std::{fmt::Debug, str::FromStr, string::ParseError};
+use utils::stdin_to_vec;
 
 #[derive(Debug, PartialEq, Clone)]
 enum Operation {
     ACC,
     JMP,
     NOP,
-}
-
-impl Default for Operation {
-    fn default() -> Self {
-        Operation::NOP
-    }
 }
 
 impl Operation {
@@ -25,7 +19,7 @@ impl Operation {
         }
     }
 }
-#[derive(Default, Debug, Clone)]
+#[derive(Debug, Clone)]
 struct Instruction {
     operation: Operation,
     argument: i32,
@@ -41,9 +35,18 @@ impl Instruction {
     }
 }
 
-impl VecItem for Instruction {
-    fn parse(&mut self, s: &str) {
-        self.parse(s);
+impl FromStr for Instruction {
+    type Err = ParseError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        let mut instance = Self {
+            operation: Operation::NOP,
+            argument: 0,
+        };
+
+        instance.parse(s);
+
+        Ok(instance)
     }
 }
 

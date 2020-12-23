@@ -1,19 +1,19 @@
-use std::io::{self, BufRead};
+use std::{
+    io::{self, BufRead},
+    str::FromStr,
+};
 
-pub trait VecItem {
-    fn parse(&mut self, s: &str);
-}
-
-pub fn stdin_to_vec<T: VecItem + Default>() -> Vec<T> {
+pub fn stdin_to_vec<T: FromStr>() -> Vec<T> {
     let mut list: Vec<T> = vec![];
 
-    for line_res in io::stdin().lock().lines() {
-        let line = line_res.unwrap();
+    for line_result in io::stdin().lock().lines() {
+        let line = line_result.unwrap();
+        let item = line.parse::<T>();
 
-        let mut item: T = Default::default();
-        item.parse(line.as_str());
-
-        list.push(item);
+        match item {
+            Ok(value) => list.push(value),
+            Err(_) => println!("Could not parse {}.", line),
+        }
     }
 
     list

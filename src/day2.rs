@@ -1,8 +1,6 @@
 use crate::utils;
-use std::{
-    fmt::{Debug, Result},
-    io::{self, BufRead},
-};
+use std::{fmt::Debug, str::FromStr, string::ParseError};
+use utils::stdin_to_vec;
 
 pub struct Password {
     pub policy_number1: usize,
@@ -11,36 +9,34 @@ pub struct Password {
     pub password: String,
 }
 
-impl utils::VecItem for Password {
-    fn parse(&mut self, s: &str) {
+impl FromStr for Password {
+    type Err = ParseError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut chars = s.chars();
 
         let minus_pos = chars.position(|c| c == '-').unwrap();
-        self.policy_number1 = String::from(&s[..minus_pos]).parse::<usize>().unwrap();
+        let policy_number1 = String::from(&s[..minus_pos]).parse::<usize>().unwrap();
 
         chars = s.chars();
         let space_pos = chars.position(|c| c == ' ').unwrap();
-        self.plolicy_number2 = String::from(&s[minus_pos + 1..space_pos])
+        let plolicy_number2 = String::from(&s[minus_pos + 1..space_pos])
             .parse::<usize>()
             .unwrap();
 
-        self.policy_letter = chars.next().unwrap();
+        let policy_letter = chars.next().unwrap();
 
         assert_eq!(Some(':'), chars.next());
         assert_eq!(Some(' '), chars.next());
 
-        self.password = chars.collect();
-    }
-}
+        let password = chars.collect();
 
-impl Default for Password {
-    fn default() -> Self {
-        Password {
-            policy_number1: 0,
-            plolicy_number2: 0,
-            policy_letter: '.',
-            password: String::new(),
-        }
+        Ok(Self {
+            policy_number1,
+            plolicy_number2,
+            policy_letter,
+            password,
+        })
     }
 }
 
@@ -66,7 +62,7 @@ fn is_password_valid_part1(p: &Password) -> bool {
 }
 
 pub fn part1() {
-    let passwords: Vec<Password> = utils::stdin_to_vec::<Password>();
+    let passwords: Vec<Password> = stdin_to_vec::<Password>();
 
     let mut valid_password_count = 0;
     for password in &passwords {
