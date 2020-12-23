@@ -12,7 +12,7 @@ pub fn stdin_to_vec<T: FromStr>() -> Vec<T> {
 
         match item {
             Ok(value) => list.push(value),
-            Err(_) => println!("Could not parse {}.", line),
+            Err(_) => println!("Could not parse line: '{}'.", line),
         }
     }
 

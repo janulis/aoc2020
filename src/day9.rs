@@ -1,22 +1,4 @@
-use io::stdin;
-use std::{
-    io::{self, Read},
-    vec,
-};
-
-fn stdin_to_ints() -> Vec<i64> {
-    let mut input_str = String::new();
-    stdin().read_to_string(&mut input_str);
-
-    let mut numbers = vec![];
-
-    for field_str in input_str.split('\n') {
-        let number = field_str.parse::<i64>().unwrap();
-        numbers.push(number);
-    }
-
-    numbers
-}
+use crate::utils;
 
 fn find_first_invalid_number(numbers: &Vec<i64>, preamble_len: usize) -> Option<i64> {
     for i in preamble_len..numbers.len() {
@@ -45,7 +27,7 @@ fn find_first_invalid_number(numbers: &Vec<i64>, preamble_len: usize) -> Option<
 }
 
 pub fn part1() {
-    let numbers = stdin_to_ints();
+    let numbers = utils::stdin_to_vec::<i64>();
     let preamble_len = 25;
 
     if let Some(invalid_number) = find_first_invalid_number(&numbers, preamble_len) {
@@ -54,7 +36,7 @@ pub fn part1() {
 }
 
 pub fn part2() {
-    let numbers = stdin_to_ints();
+    let numbers = utils::stdin_to_vec::<i64>();
     let preamble_len = 25;
 
     if let Some(invalid_number) = find_first_invalid_number(&numbers, preamble_len) {
@@ -64,7 +46,7 @@ pub fn part2() {
             let mut range_max_number = numbers[i];
 
             for j in (i + 1)..numbers.len() {
-                let number = numbers[j];                
+                let number = numbers[j];
                 range_number_sum += number;
 
                 if number < range_min_number {
