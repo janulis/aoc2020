@@ -8,12 +8,13 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day9;
 mod utils;
 
 fn help() {
     println!(
         "Usage: ./aoc2020 <day_num> <part_num>
-        where <day_num>: [1..8], <part_num>: [1..2]"
+        where <day_num>: [1..9], <part_num>: [1..2]"
     );
 }
 
@@ -52,6 +53,8 @@ fn main() {
         (7, 2) => day7::part2(),
         (8, 1) => day8::part1(),
         (8, 2) => day8::part2(),
+        (9, 1) => day9::part1(),
+        (9, 2) => day9::part2(),
         _ => help(),
     }
 }
