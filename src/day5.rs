@@ -1,6 +1,5 @@
-use core::panic;
-use io::stdin;
-use std::io::{self, Read};
+use crate::utils;
+use std::{str::FromStr, string::ParseError};
 
 #[derive(Debug)]
 struct BoardingPass {
@@ -82,22 +81,16 @@ fn test_parse() {
     assert_eq!(boarding_pass.get_seat_id(), 820);
 }
 
-fn stdin_to_boarding_passes() -> Vec<BoardingPass> {
-    let mut input_str = String::new();
-    stdin().read_to_string(&mut input_str);
+impl FromStr for BoardingPass {
+    type Err = ParseError;
 
-    let mut boarding_passes: Vec<BoardingPass> = vec![];
-
-    for seat_code in input_str.split('\n') {
-        boarding_passes.push(BoardingPass::new(seat_code.to_string()));
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(BoardingPass::new(s.to_string()))
     }
-
-    boarding_passes
 }
 
 pub fn part1() {
-    let boarding_passes = stdin_to_boarding_passes();
-    // println!("{:?}", boarding_passes);
+    let boarding_passes = utils::stdin_to_vec::<BoardingPass>();
 
     let mut max_seat_id = 0;
     for boarding_pass in boarding_passes {
@@ -112,7 +105,7 @@ pub fn part1() {
 }
 
 pub fn part2() {
-    let boarding_passes = stdin_to_boarding_passes();
+    let boarding_passes = utils::stdin_to_vec::<BoardingPass>();
 
     let mut seat_ids: Vec<usize> = vec![];
     for boarding_pass in boarding_passes {
