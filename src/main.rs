@@ -27,12 +27,12 @@ fn main() {
         return;
     }
 
-    let day_num = &args[1].parse::<u8>().unwrap_or_else(|errror| {
+    let day_num = &args[1].parse::<u8>().unwrap_or_else(|_| {
         help();
         process::exit(1);
     });
 
-    let part_num = &args[2].parse::<u8>().unwrap_or_else(|error| {
+    let part_num = &args[2].parse::<u8>().unwrap_or_else(|_| {
         help();
         process::exit(1);
     });

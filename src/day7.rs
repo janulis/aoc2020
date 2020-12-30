@@ -56,7 +56,7 @@ impl Bag {
 }
 
 impl FromStr for Bag {
-    type Err= ParseError;
+    type Err = ParseError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut instance = Self {

@@ -86,7 +86,6 @@ impl Program {
                 self.accumulator += instruction.argument;
                 self.instruction_index += 1
             }
-            _ => (),
         }
 
         println!(

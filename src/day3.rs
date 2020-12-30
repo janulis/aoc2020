@@ -18,13 +18,13 @@ impl FromStr for SlopePattern {
 
 impl Debug for SlopePattern {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let mut formattedPattern = String::new();
+        let mut formatted_pattern = String::new();
 
         for c in &self.pattern {
-            formattedPattern.push(c.clone());
+            formatted_pattern.push(c.clone());
         }
 
-        write!(f, "{}", formattedPattern)
+        write!(f, "{}", formatted_pattern)
     }
 }
 

@@ -77,7 +77,7 @@ impl PassengerGroup {
 
 fn stdin_to_passenger_groups() -> Vec<PassengerGroup> {
     let mut input_str = String::new();
-    stdin().read_to_string(&mut input_str);
+    let _ = stdin().read_to_string(&mut input_str);
 
     let mut passenger_groups: Vec<PassengerGroup> = vec![PassengerGroup::new()];
 
@@ -87,7 +87,7 @@ fn stdin_to_passenger_groups() -> Vec<PassengerGroup> {
             continue;
         }
 
-        let mut passenger_group = passenger_groups.last_mut().unwrap();
+        let passenger_group = passenger_groups.last_mut().unwrap();
         passenger_group.add_passenger(Passenger::new(field_str.to_string()));
     }
 

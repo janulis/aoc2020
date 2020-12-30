@@ -162,7 +162,7 @@ fn test_is_valid_passport_id() {
 
 fn stdin_to_passports() -> Vec<Passport> {
     let mut input_str = String::new();
-    stdin().read_to_string(&mut input_str);
+    let _ = stdin().read_to_string(&mut input_str);
 
     let mut passports: Vec<Passport> = vec![Passport::new()];
 
@@ -176,7 +176,7 @@ fn stdin_to_passports() -> Vec<Passport> {
         let key = field_split.next().unwrap();
         let value = field_split.next().unwrap();
 
-        let mut passport = passports.last_mut().unwrap();
+        let passport = passports.last_mut().unwrap();
         passport.fields.insert(key.to_string(), value.to_string());
     }
 
