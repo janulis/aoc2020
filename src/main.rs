@@ -1,6 +1,7 @@
 use std::{env, process};
 
 mod day1;
+mod day10;
 mod day2;
 mod day3;
 mod day4;
@@ -13,8 +14,8 @@ mod utils;
 
 fn help() {
     println!(
-        "Usage: ./aoc2020 <day_num> <part_num>
-        where <day_num>: [1..9], <part_num>: [1..2]"
+        "Usage: ./aoc2020 <day_num> <part_num> < data/day<day_num>.txt
+        where <day_num>: [1..10], <part_num>: [1..2]"
     );
 }
 
@@ -55,6 +56,8 @@ fn main() {
         (8, 2) => day8::part2(),
         (9, 1) => day9::part1(),
         (9, 2) => day9::part2(),
+        (10, 1) => day10::part1(),
+        (10, 2) => day10::part2(),
         _ => help(),
     }
 }
