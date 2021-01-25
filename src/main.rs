@@ -6,6 +6,7 @@ mod day11;
 mod day12;
 mod day13;
 mod day14;
+mod day15;
 mod day2;
 mod day3;
 mod day4;
@@ -19,7 +20,7 @@ mod utils;
 fn help() {
     println!(
         "Usage: ./aoc2020 <day_num> <part_num> < data/day<day_num>.txt
-        where <day_num>: [1..14], <part_num>: [1..2]"
+        where <day_num>: [1..15], <part_num>: [1..2]"
     );
 }
 
@@ -70,6 +71,8 @@ fn main() {
         (13, 2) => day13::part2(),
         (14, 1) => day14::part1(),
         (14, 2) => day14::part2(),
+        (15, 1) => day15::part1(),
+        (15, 2) => day15::part2(),
         _ => help(),
     }
 }
